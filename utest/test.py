@@ -9,12 +9,13 @@
 @contact: zhouqiang847@gmail.com
 """
 
-import case
 import random
-import main
+import sys
+sys.path.insert(0, "../..")
 
+import liteUnittest
 
-class TestSequenceFunctions(case.TestCase):
+class TestSequenceFunctions(liteUnittest.TestCase):
     @classmethod
     def setUpClass(cls):
         pass
@@ -29,7 +30,7 @@ class TestSequenceFunctions(case.TestCase):
     def tearDown(self):
         pass
 
-    @case.skip('this is a test')
+    @liteUnittest.skip('this is a test')
     def test_shuffle(self):
         # make sure the shuffled sequence does not lose any elements
         random.shuffle(self.seq)
@@ -39,7 +40,7 @@ class TestSequenceFunctions(case.TestCase):
         # should raise an exception for an immutable sequence
         self.assertRaises(TypeError, random.shuffle, (1, 2, 3))
 
-    @case.expectedFailure
+    @liteUnittest.expectedFailure
     def test_choice(self):
         element = random.choice(self.seq)
         self.assertTrue(element in self.seq)
@@ -52,4 +53,5 @@ class TestSequenceFunctions(case.TestCase):
 
 
 if __name__ == '__main__':
-    main.main(verbosity=2)
+    print __name__
+    liteUnittest.main(verbosity=2)
